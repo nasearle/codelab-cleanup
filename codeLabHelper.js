@@ -10,6 +10,7 @@ var chalk = require('chalk');
 var glob = require('globule');
 var moment = require('moment');
 var gutil = require('gulp-util');
+var copydir = require('copy-dir');
 const path = require('path');
 const remark = require('remark');
 const remarkHtml = require('remark-html');
@@ -166,4 +167,10 @@ function updateCodeLab(sourceFile, destFile, bookPath) {
 
 exports.updateCodeLab = updateCodeLab;
 
-updateCodeLab('lab-caching-files-with-service-worker/', 'test', '');
+copydir.sync('raw_markdown', 'clean_markdown');
+
+var filesToProcess = glob.find('clean_markdown/**/index.md');
+
+filesToProcess.forEach(function(filename) {
+  updateCodeLab(filename, filename, '');
+});

@@ -15,6 +15,7 @@
   },
   "homepage": "https://github.com/google/WebFundamentals",
   "devDependencies": {
+    "copy-dir": "^0.3.0",
     "gulp-remark": "^3.0.0"
   },
   "private": true,
